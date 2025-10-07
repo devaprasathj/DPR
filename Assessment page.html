@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment List - DPR Quality Assessment System</title>
+    <link rel="stylesheet" href="style and login page.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="content page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-title">
+            <h1>MDONER DPR Quality Assessment System</h1>
+            <p>AI-Powered Project Evaluation & Risk Analysis</p>
+        </div>
+        <div class="header-controls">
+            <div class="language-selector">
+                <span class="material-icons">language</span>
+                <select id="languageSelect">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="as">Assamese</option>
+                    <option value="ta">Tamil</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="te">Telugu</option>
+                    <option value="kn">Kannada</option>
+                </select>
+            </div>
+            <button id="modeChangeBtn" class="mode-toggle">
+                <span class="material-icons">brightness_4</span>
+            </button>
+            <div class="system-status">
+                <span class="status-indicator online"></span> System Online
+            </div>
+            <button id="logoutButton" class="logout-button">
+                Logout <span class="material-icons">logout</span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <ul>
+            <li><a href="main dashboard.html">Dashboard</a></li>
+            <li><a href="upload DPR page.html">Upload DPR</a></li>
+            <li><a href="Assessment page.html" class="active">Assessment</a></li>
+            <li><a href="Risk Analysis page.html">Risk Analysis</a></li>
+            <li><a href="compilance page.html">Compliance</a></li>
+            <li><a href="Analytics page.html">Analytics</a></li>
+        </ul>
+    </nav>
+
+    <main class="content-page">
+        <h1>Detailed Assessment Overview</h1>
+        
+        <div class="content-card">
+            <p class="caption">List of all projects with their AI-generated quality scores and manual review status.</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>AI Score</th>
+                        <th>Review Status</th>
+                        <th>Last Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="assessmentTableBody">
+                    <!-- Data populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="Autrhentication login.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!checkAuth()) return;
+
+            const projects = [
+                { id: 1, name: "Highway Construction - Shillong", score: 92, status: "Approved", updated: "2025-09-28" },
+                { id: 2, name: "Water Treatment Plant - Guwahati", score: 78, status: "Under Review", updated: "2025-10-01" },
+                { id: 3, name: "School Building - Imphal", score: 85, status: "Approved", updated: "2025-09-15" },
+                { id: 4, name: "Industrial Park Expansion - Agartala", score: 65, status: "Pending Review", updated: "2025-10-05" },
+                { id: 5, name: "Road Widening - Kohima", score: 89, status: "Approved", updated: "2025-09-20" }
+            ];
+
+            const body = document.getElementById('assessmentTableBody');
+            body.innerHTML = projects.map(p => {
+                let statusClass = 'status-low';
+                if (p.score < 70) statusClass = 'status-high';
+                if (p.status === 'Pending Review') statusClass = 'status-pending';
+
+                return `
+                    <tr>
+                        <td><a href="project analys view.html?id=${p.id}" class="action-link">${p.name}</a></td>
+                        <td>${p.score}%</td>
+                        <td><span class="status-indicator ${statusClass}">${p.status}</span></td>
+                        <td>${p.updated}</td>
+                        <td><a href="project analys view.html?id=${p.id}" class="action-link">View</a></td>
+                    </tr>
+                `;
+            }).join('');
+        });
+    </script>
+</body>
+</html>
+

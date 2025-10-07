@@ -1,0 +1,121 @@
+/* --- Common Styles for Content Pages --- */
+
+/* Inherit header and main layout from dashboard.css */
+
+.content-page {
+    padding: 20px 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.content-page h1 {
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.content-card {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 30px;
+}
+
+/* --- Form Styles (for Upload DPR) --- */
+.upload-form .form-group {
+    margin-bottom: 20px;
+}
+
+.upload-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.upload-form input[type="text"],
+.upload-form input[type="file"],
+.upload-form select,
+.upload-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.upload-form textarea {
+    resize: vertical;
+}
+
+.upload-button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #00605a;
+}
+
+/* --- Table Styles (for Assessment, Compliance, Risk) --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.data-table th, .data-table td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.data-table th {
+    background-color: #f8f8f8;
+    color: #555;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.status-indicator {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.status-pending { background-color: #fff9c4; color: #fbc02d; } /* Yellow */
+.status-high { background-color: #ffcdd2; color: var(--danger-color); } /* Red */
+.status-low { background-color: #c8e6c9; color: var(--success-color); } /* Green */
+.status-moderate { background-color: #b3e5fc; color: #0288d1; } /* Blue */
+
+.action-link {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+/* --- Analytics Styles (Simplified Chart Placeholder) --- */
+.chart-container {
+    height: 300px;
+    background-color: #e0f2f1;
+    border: 1px dashed var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}

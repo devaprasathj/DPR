@@ -1,0 +1,314 @@
+/* --- Header/Navigation Styles --- */
+header {
+    background: var(--card-background);
+    border-bottom: 1px solid #eee;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.logo-section h2 {
+    font-size: 20px;
+    color: var(--primary-color);
+    display: inline-block;
+}
+
+.logo-section p {
+    font-size: 12px;
+    color: #777;
+    margin-top: 2px;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.system-status {
+    padding: 5px 10px;
+    background-color: var(--success-color);
+    color: white;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.logout-button {
+    padding: 8px 15px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f;
+}
+
+/* New styles for the language selector to match the image */
+.language-selector {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg, #fff);
+    border: 1px solid #e0e0e0; /* A light border like the image */
+    padding: 6px 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+
+.language-selector .material-icons {
+    margin-right: 8px; /* Space between icon and text */
+    color: #555;
+}
+
+.language-selector select {
+    border: none;
+    background: transparent;
+    font-size: 1rem; /* 16px */
+    cursor: pointer;
+    -webkit-appearance: none; /* Removes default chrome/safari styling */
+    -moz-appearance: none; /* Removes default firefox styling */
+    appearance: none; /* Removes default styling */
+    padding-right: 15px; /* Make space for the custom arrow */
+    color: var(--primary-text);
+}
+
+.language-selector select:focus {
+    outline: none;
+}
+
+/* Custom dropdown arrow using background image */
+.header-controls .language-selector {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1em;
+}
+
+/* Style for the mode-toggle button to match the language selector */
+.mode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg, #fff);
+    border: 1px solid #e0e0e0;
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.mode-toggle .material-icons {
+    color: #555;
+    font-size: 22px;
+}
+
+.mode-toggle:hover {
+    background-color: #f5f5f5;
+}
+
+
+/* --- Navigation Tabs --- */
+.nav-tabs {
+    padding: 10px 30px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-tabs li a {
+    text-decoration: none;
+    color: #666;
+    padding: 10px 0;
+    display: block;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s, border-bottom 0.3s;
+    font-weight: 500;
+}
+
+.nav-tabs li a.active,
+.nav-tabs li a:hover {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* --- Main Content Layout --- */
+main {
+    padding: 30px;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 120px;
+}
+
+.stat-card .label {
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-card .value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 10px;
+}
+
+.stat-card.risk .value { color: var(--danger-color); }
+.stat-card.compliant .value { color: var(--success-color); }
+
+/* --- Dashboard Sections Layout --- */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Assessments (2/3) and Alerts (1/3) */
+    gap: 30px;
+}
+
+@media (max-width: 900px) {
+    .content-grid {
+        grid-template-columns: 1fr; /* Stack on smaller screens */
+    }
+}
+
+.section-card {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--box-shadow);
+}
+
+.section-card h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.section-card p.caption {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+/* --- Recent Assessments List --- */
+.assessment-item {
+    padding: 15px 0;
+    border-bottom: 1px dashed #eee;
+}
+.assessment-item:last-child {
+    border-bottom: none;
+}
+
+.assessment-item h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.assessment-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.assessment-details span {
+    font-size: 13px;
+    color: #666;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.status-approved { background-color: var(--success-color); color: white; }
+.status-review { background-color: var(--warning-color); color: white; }
+
+/* Progress Bar Style */
+.progress-bar-container {
+    background-color: #eee;
+    border-radius: 5px;
+    height: 8px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.5s ease;
+}
+
+/* --- Risk Alerts List --- */
+.alert-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px 0;
+    border-bottom: 1px dashed #eee;
+}
+.alert-item:last-child {
+    border-bottom: none;
+}
+
+.alert-item .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.dot.red { background-color: var(--danger-color); }
+.dot.orange { background-color: var(--warning-color); }
+.dot.blue { background-color: #29b6f6; }
+
+.alert-item h4 {
+    font-size: 15px;
+    color: var(--danger-color);
+    margin-bottom: 3px;
+}
+
+.alert-item p {
+    font-size: 13px;
+    color: #555;
+}
+
+.alert-item.budget h4 { color: var(--danger-color); }
+.alert-item.compliance h4 { color: var(--warning-color); }
+.alert-item.timeline h4 { color: #29b6f6; }
+
+/* Utility for icons (Using simple text/unicode as we can't rely on FontAwesome) */
+.material-icon {
+    font-family: 'Material Icons', sans-serif;
+    font-size: 18px;
+    vertical-align: middle;
+}

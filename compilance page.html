@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance - DPR Quality Assessment System</title>
+    <link rel="stylesheet" href="style and login page.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="content page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-title">
+            <h1 data-translate-key="systemTitle">MDONER DPR Quality Assessment System</h1>
+            <p data-translate-key="systemSubtitle">AI-Powered Project Evaluation & Risk Analysis</p>
+        </div>
+        <div class="header-controls">
+            <div class="language-selector">
+                <span class="material-icons">language</span>
+                <select id="languageSelect">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="as">Assamese</option>
+                    <option value="ta">Tamil</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="te">Telugu</option>
+                    <option value="kn">Kannada</option>
+                </select>
+            </div>
+            <button id="modeChangeBtn" class="mode-toggle">
+                <span class="material-icons">brightness_4</span>
+            </button>
+            <div class="system-status" data-translate-key="systemOnline">
+                <span class="status-indicator online"></span> System Online
+            </div>
+            <button id="logoutButton" class="logout-button" data-translate-key="logout">
+                Logout <span class="material-icons">logout</span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <ul>
+            <li><a href="main dashboard.html" data-translate-key="dashboard">Dashboard</a></li>
+            <li><a href="upload DPR page.html" data-translate-key="uploadDPR">Upload DPR</a></li>
+            <li><a href="Assessment page.html" data-translate-key="assessment">Assessment</a></li>
+            <li><a href="Risk Analysis page.html" data-translate-key="riskAnalysis">Risk Analysis</a></li>
+            <li><a href="compilance page.html" class="active" data-translate-key="compliance">Compliance</a></li>
+            <li><a href="Analytics page.html" data-translate-key="analytics">Analytics</a></li>
+        </ul>
+    </nav>
+
+    <main class="content-page">
+        <h1>Regulatory Compliance Report</h1>
+        
+        <div class="content-card">
+            <p class="caption">A view of all projects and their adherence to central and state regulatory requirements.</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Environmental Status</th>
+                        <th>Financial Audit Status</th>
+                        <th>Legal Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="complianceTableBody">
+                    <!-- Data populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="Autrhentication login.js"></script>
+    <script src="language-switcher.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!checkAuth()) return;
+
+            const complianceData = [
+                { id: 1, name: "Highway Construction - Shillong", env: "Minor Issues", audit: "Compliant", legal: "Compliant" },
+                { id: 2, name: "Water Treatment Plant - Guwahati", env: "Compliant", audit: "Pending", legal: "Compliant" },
+                { id: 3, name: "Industrial Park - Agartala", env: "Non-Compliant", audit: "Compliant", legal: "Minor Issues" },
+                { id: 4, name: "Road Widening - Kohima", env: "Compliant", audit: "Compliant", legal: "Compliant" },
+            ];
+
+            const body = document.getElementById('complianceTableBody');
+            body.innerHTML = complianceData.map(c => {
+                const getClass = (status) => {
+                    if (status.includes("Non-Compliant")) return "status-high";
+                    if (status.includes("Pending") || status.includes("Minor")) return "status-moderate";
+                    return "status-low";
+                };
+
+                return `
+                    <tr>
+                        <td><a href="project analys view.html?id=${c.id}" class="action-link">${c.name}</a></td>
+                        <td><span class="status-indicator ${getClass(c.env)}">${c.env}</span></td>
+                        <td><span class="status-indicator ${getClass(c.audit)}">${c.audit}</span></td>
+                        <td><span class="status-indicator ${getClass(c.legal)}">${c.legal}</span></td>
+                        <td><a href="project analys view.html?id=${c.id}" class="action-link">View Proof</a></td>
+                    </tr>
+                `;
+            }).join('');
+        });
+    </script>
+</body>
+</html>

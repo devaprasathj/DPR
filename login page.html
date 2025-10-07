@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPR Assessment System - Login</title>
+    <!-- Use a simple font like Inter - usually linked from Google Fonts, but defined in CSS for now -->
+    <link rel="stylesheet" href="style and login page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        .top-right-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 10;
+        }
+        .language-selector {
+            display: flex;
+            align-items: center;
+            background-color: var(--card-bg, #fff);
+            padding: 5px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .language-selector select {
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        .language-selector select:focus {
+            outline: none;
+        }
+        .mode-toggle {
+            background: var(--card-bg, #fff);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="login-body">
+
+    <div class="top-right-controls">
+        <div class="language-selector">
+            <span class="material-icons">language</span>
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="as">Assamese</option>
+            </select>
+        </div>
+        <button id="modeChangeBtn" class="mode-toggle">
+            <span class="material-icons">brightness_4</span>
+        </button>
+    </div>
+
+    <div class="login-card">
+        <div class="icon-box">
+            <span class="material-icons">description</span>
+        </div>
+        <h1 id="authTitle" data-translate-key="welcomeBack">Welcome Back</h1>
+        <p class="subtitle" id="authSubtitle" data-translate-key="signInToAccess">Sign in to access the MDONER DPR Assessment System</p>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email" data-translate-key="emailLabel">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password" data-translate-key="passwordLabel">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" data-translate-key="signInButton">Sign In</button>
+        </form>
+        
+        <div id="authMessage" class="message-box"></div>
+
+        <form id="signupForm" style="display:none;">
+            <!-- Add translate keys for signup form elements here -->
+        </form>
+
+        <p class="signup-link" id="toggleToSignup">
+            <span data-translate-key="noAccount">Don't have an account?</span> <a href="#" data-translate-key="signUpLink">Sign up</a>
+        </p>
+        <p class="signup-link" id="toggleToLogin" style="display:none;">
+            <!-- Add translate keys for the "Already have an account?" text here -->
+        </p>
+    </div>
+
+    <script src="Autrhentication login.js"></script>
+    <script src="language-switcher.js"></script>
+</body>
+</html>

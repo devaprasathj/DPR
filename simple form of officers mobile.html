@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Field Report</title>
+    <link rel="stylesheet" href="style and login page.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Use base style.css for mobile-friendly form look -->
+    <style>
+        /* Mobile-focused container for the form */
+        .report-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        .report-container h1 {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-size: 22px;
+            text-align: center;
+        }
+        select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-title">
+            <h1 data-translate-key="systemTitle">MDONER DPR Quality Assessment System</h1>
+            <p data-translate-key="systemSubtitle">AI-Powered Project Evaluation & Risk Analysis</p>
+        </div>
+        <div class="header-controls">
+            <div class="language-selector">
+                <span class="material-icons">language</span>
+                <select id="languageSelect">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="as">Assamese</option>
+                    <option value="ta">Tamil</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="te">Telugu</option>
+                    <option value="kn">Kannada</option>
+                </select>
+            </div>
+            <button id="modeChangeBtn" class="mode-toggle">
+                <span class="material-icons">brightness_4</span>
+            </button>
+            <div class="system-status" data-translate-key="systemOnline">
+                <span class="status-indicator online"></span> System Online
+            </div>
+            <button id="logoutButton" class="logout-button" data-translate-key="logout">
+                Logout <span class="material-icons">logout</span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <ul>
+            <li><a href="main dashboard.html" data-translate-key="dashboard">Dashboard</a></li>
+            <li><a href="upload DPR page.html" class="active" data-translate-key="uploadDPR">Upload DPR</a></li>
+            <li><a href="Assessment page.html" data-translate-key="assessment">Assessment</a></li>
+            <li><a href="Risk Analysis page.html" data-translate-key="riskAnalysis">Risk Analysis</a></li>
+            <li><a href="compilance page.html" data-translate-key="compliance">Compliance</a></li>
+            <li><a href="Analytics page.html" data-translate-key="analytics">Analytics</a></li>
+        </ul>
+    </nav>
+
+    <main class="report-container">
+        <!-- You can add a translate key for this title -->
+        <h1>Submit Field Report</h1>
+        <form id="reportForm">
+            <!-- Add data-translate-key attributes to your form labels as needed -->
+            <div class="form-group">
+                <label for="projectSelect">Project ID/Name:</label>
+                <select id="projectSelect" required>
+                    <option value="">-- Select Project --</option>
+                    <option value="1">Highway Construction - Shillong</option>
+                    <option value="2">Water Treatment Plant - Guwahati</option>
+                    <option value="3">School Building - Imphal</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="status">Current Status:</label>
+                <select id="status" required>
+                    <option value="">-- Select Status --</option>
+                    <option value="On Track">On Track</option>
+                    <option value="Minor Delay">Minor Delay</option>
+                    <option value="Major Issue">Major Issue</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Observation Notes (Max 500 chars):</label>
+                <textarea id="notes" rows="6" maxlength="500" placeholder="Enter detailed observations..."></textarea>
+            </div>
+
+            <button type="submit" class="sign-in-button" style="background-color: var(--secondary-color);">Submit Report</button>
+        </form>
+    </main>
+
+    <script src="Autrhentication login.js"></script>
+    <script src="report form logic.js"></script>
+    <script src="language-switcher.js"></script>
+</body>
+</html>

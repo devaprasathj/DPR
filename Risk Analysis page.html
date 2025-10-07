@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Analysis - DPR Quality Assessment System</title>
+    <link rel="stylesheet" href="style and login page.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="content page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-title">
+            <h1 data-translate-key="systemTitle">MDONER DPR Quality Assessment System</h1>
+            <p data-translate-key="systemSubtitle">AI-Powered Project Evaluation & Risk Analysis</p>
+        </div>
+        <div class="header-controls">
+            <div class="language-selector">
+                <span class="material-icons">language</span>
+                <select id="languageSelect">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="as">Assamese</option>
+                    <option value="ta">Tamil</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="te">Telugu</option>
+                    <option value="kn">Kannada</option>
+                </select>
+            </div>
+            <button id="modeChangeBtn" class="mode-toggle">
+                <span class="material-icons">brightness_4</span>
+            </button>
+            <div class="system-status" data-translate-key="systemOnline">
+                <span class="status-indicator online"></span> System Online
+            </div>
+            <button id="logoutButton" class="logout-button" data-translate-key="logout">
+                Logout <span class="material-icons">logout</span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <ul>
+            <li><a href="main dashboard.html" data-translate-key="dashboard">Dashboard</a></li>
+            <li><a href="upload DPR page.html" data-translate-key="uploadDPR">Upload DPR</a></li>
+            <li><a href="Assessment page.html" data-translate-key="assessment">Assessment</a></li>
+            <li><a href="Risk Analysis page.html" class="active" data-translate-key="riskAnalysis">Risk Analysis</a></li>
+            <li><a href="compilance page.html" data-translate-key="compliance">Compliance</a></li>
+            <li><a href="Analytics page.html" data-translate-key="analytics">Analytics</a></li>
+        </ul>
+    </nav>
+
+    <main class="content-page">
+        <h1>Project Risk Analysis Summary</h1>
+        
+        <div class="content-card">
+            <p class="caption">Projects ranked by overall risk level (high risk projects requiring immediate attention are highlighted).</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Overall Risk</th>
+                        <th>Financial Risk</th>
+                        <th>Timeline Risk</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="riskTableBody">
+                    <!-- Data populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="Autrhentication login.js"></script>
+    <script src="language-switcher.js"></script>
+    <script>
+        // Temporary local definitions to ensure 'checkAuth' is available 
+        // if auth.js hasn't fully loaded the global functions yet.
+        // The real fix is ensuring checkAuth and logout are defined globally in js/auth.js.
+        // For this single-file fix, we assume the functions are NOT globally available 
+        // at the time this script tag executes.
+        if (typeof checkAuth === 'undefined') {
+            window.checkAuth = function() {
+                const token = localStorage.getItem('dpr_token');
+                if (!token) {
+                    window.location.href = 'login page.html';
+                    return false;
+                }
+                return token;
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Now checkAuth is guaranteed to exist.
+            if (!checkAuth()) return;
+
+            const risks = [
+                { id: 1, name: "Bridge Construction - Aizawl", overall: "High", financial: "High", timeline: "Moderate" },
+                { id: 2, name: "Industrial Park - Agartala", overall: "Moderate", financial: "Low", timeline: "High" },
+                { id: 3, name: "Highway Construction - Shillong", overall: "Low", financial: "Low", timeline: "Low" },
+                { id: 4, name: "Water Treatment Plant - Guwahati", overall: "Moderate", financial: "Moderate", timeline: "Moderate" },
+            ];
+
+            const body = document.getElementById('riskTableBody');
+            body.innerHTML = risks.map(r => {
+                const getRiskClass = (risk) => {
+                    if (risk === "High") return "status-high";
+                    if (risk === "Moderate") return "status-moderate";
+                    return "status-low";
+                };
+
+                return `
+                    <tr>
+                        <td><a href="project analys view.html?id=${r.id}" class="action-link">${r.name}</a></td>
+                        <td><span class="status-indicator ${getRiskClass(r.overall)}">${r.overall}</span></td>
+                        <td><span class="status-indicator ${getRiskClass(r.financial)}">${r.financial}</span></td>
+                        <td><span class="status-indicator ${getRiskClass(r.timeline)}">${r.timeline}</span></td>
+                        <td><a href="project analys view.html?id=${r.id}" class="action-link">Review</a></td>
+                    </tr>
+                `;
+            }).join('');
+        });
+    </script>
+</body>
+</html>

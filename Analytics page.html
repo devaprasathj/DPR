@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - DPR Quality Assessment System</title>
+    <link rel="stylesheet" href="style and login page.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="content page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-title">
+            <h1 data-translate-key="systemTitle">MDONER DPR Quality Assessment System</h1>
+            <p data-translate-key="systemSubtitle">AI-Powered Project Evaluation & Risk Analysis</p>
+        </div>
+        <div class="header-controls">
+            <div class="language-selector">
+                <span class="material-icons">language</span>
+                <select id="languageSelect">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="as">Assamese</option>
+                    <option value="ta">Tamil</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="te">Telugu</option>
+                    <option value="kn">Kannada</option>
+                </select>
+            </div>
+            <button id="modeChangeBtn" class="mode-toggle">
+                <span class="material-icons">brightness_4</span>
+            </button>
+            <div class="system-status">
+                <span class="status-indicator online"></span> System Online
+            </div>
+            <button id="logoutButton" class="logout-button">
+                Logout <span class="material-icons">logout</span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <ul>
+            <li><a href="main dashboard.html" data-translate-key="dashboard">Dashboard</a></li>
+            <li><a href="upload DPR page.html">Upload DPR</a></li>
+            <li><a href="Assessment page.html">Assessment</a></li>
+            <li><a href="Risk Analysis page.html">Risk Analysis</a></li>
+            <li><a href="compilance page.html">Compliance</a></li>
+            <li><a href="Analytics page.html" class="active">Analytics</a></li>
+        </ul>
+    </nav>
+
+    <main class="content-page">
+        <h1>System Performance & Trend Analysis</h1>
+        
+        <div class="content-card">
+            <h3>Quality Score Trends by Quarter</h3>
+            <div class="chart-container">
+                [Placeholder for Chart Library: Quarterly Quality Score Trendline]
+            </div>
+            
+            <h3>Risk Distribution by State</h3>
+            <div class="chart-container">
+                [Placeholder for Chart Library: High Risk Projects (Bar Chart)]
+            </div>
+
+            <h3>Report Submission Velocity</h3>
+            <div class="chart-container">
+                [Placeholder for Chart Library: Reports Per Month (Line Graph)]
+            </div>
+        </div>
+    </main>
+
+    <script src="Autrhentication login.js"></script>
+    <script src="language-switcher.js"></script> <!-- This MUST be present -->
+</body>
+</html>
