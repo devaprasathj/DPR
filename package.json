@@ -1,0 +1,12 @@
+{
+  "name": "dpr-static-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npx http-server . -a 127.0.0.1 -p 8080 -c-1",
+    "start:open": "npx http-server . -a 127.0.0.1 -p 8080 -c-1 -o",
+    "publish": "npx http-server . -a 127.0.0.1 -p 8080 -c-1",
+    "build": "echo 'No build step needed for static site'",
+    "dev": "npm run start"
+  }
+}

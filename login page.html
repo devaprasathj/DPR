@@ -2,102 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DPR Assessment System - Login</title>
-    <!-- Use a simple font like Inter - usually linked from Google Fonts, but defined in CSS for now -->
-    <link rel="stylesheet" href="style and login page.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Secure access to the MDoNER DPR project appraisal and monitoring system">
+    <title>Sign in | MDoNER DPR Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style>
-        .top-right-controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            z-index: 10;
-        }
-        .language-selector {
-            display: flex;
-            align-items: center;
-            background-color: var(--card-bg, #fff);
-            padding: 5px 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .language-selector select {
-            border: none;
-            background: transparent;
-            font-size: 1rem;
-            margin-left: 5px;
-            cursor: pointer;
-        }
-        .language-selector select:focus {
-            outline: none;
-        }
-        .mode-toggle {
-            background: var(--card-bg, #fff);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="style and login page.css">
 </head>
-<body class="login-body">
-
-    <div class="top-right-controls">
-        <div class="language-selector">
-            <span class="material-icons">language</span>
-            <select id="languageSelect">
-                <option value="en">English</option>
-                <option value="hi">Hindi</option>
-                <option value="as">Assamese</option>
-            </select>
-        </div>
-        <button id="modeChangeBtn" class="mode-toggle">
-            <span class="material-icons">brightness_4</span>
-        </button>
-    </div>
-
-    <div class="login-card">
-        <div class="icon-box">
-            <span class="material-icons">description</span>
-        </div>
-        <h1 id="authTitle" data-translate-key="welcomeBack">Welcome Back</h1>
-        <p class="subtitle" id="authSubtitle" data-translate-key="signInToAccess">Sign in to access the MDONER DPR Assessment System</p>
-
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="email" data-translate-key="emailLabel">Email</label>
-                <input type="email" id="email" name="email" required>
+<body class="auth-page">
+    <header class="brand-header">
+        <a class="brand-left" href="login page.html" aria-label="MDoNER DPR home">
+            <span class="brand-logo"><span class="material-icons">account_balance</span></span>
+            <span class="brand-info"><strong>MDoNER DPR Portal</strong><small>Project appraisal & monitoring</small></span>
+        </a>
+        <div class="brand-actions">
+            <div class="language-select">
+                <span class="material-icons">language</span>
+                <select id="languageSelect" aria-label="Language"><option value="en">English</option><option value="hi">हिन्दी</option><option value="as">অসমীয়া</option></select>
             </div>
-            <div class="form-group">
-                <label for="password" data-translate-key="passwordLabel">Password</label>
-                <input type="password" id="password" name="password" required>
+            <button id="modeChangeBtn" class="mode-toggle" type="button" aria-label="Use dark theme"><span class="material-icons">dark_mode</span></button>
+        </div>
+    </header>
+
+    <main class="auth-layout">
+        <section class="auth-intro" aria-labelledby="portalHeading">
+            <span class="eyebrow"><span class="material-icons">verified_user</span> Government project governance</span>
+            <h1 id="portalHeading">One workspace for stronger project decisions.</h1>
+            <p>Prepare, review and monitor Detailed Project Reports through a traceable, role-based workflow.</p>
+            <ul class="benefit-list">
+                <li><span class="material-icons">task_alt</span><span><strong>Standardised submissions</strong><small>Capture every technical, financial and compliance requirement.</small></span></li>
+                <li><span class="material-icons">query_stats</span><span><strong>Evidence-led appraisal</strong><small>Track readiness, risks and review observations in one place.</small></span></li>
+                <li><span class="material-icons">history</span><span><strong>Clear accountability</strong><small>Maintain ownership, status and audit history throughout the DPR lifecycle.</small></span></li>
+            </ul>
+        </section>
+
+        <section class="login-card" aria-live="polite">
+            <div class="login-header">
+                <span class="login-icon"><span class="material-icons" id="authIcon">login</span></span>
+                <div><h2 id="authTitle">Sign in to your account</h2><p id="authSubtitle">Use your registered official credentials</p></div>
             </div>
-            <button type="submit" data-translate-key="signInButton">Sign In</button>
-        </form>
-        
-        <div id="authMessage" class="message-box"></div>
 
-        <form id="signupForm" style="display:none;">
-            <!-- Add translate keys for signup form elements here -->
-        </form>
+            <form id="loginForm" novalidate>
+                <div class="form-group"><label for="email">Official email</label><input type="email" id="email" class="form-input" autocomplete="email" placeholder="name@organisation.gov.in" required></div>
+                <div class="form-group">
+                    <div class="label-row"><label for="password">Password</label><a href="#" id="forgotPassword">Forgot password?</a></div>
+                    <div class="password-field"><input type="password" id="password" class="form-input" autocomplete="current-password" placeholder="Enter your password" required><button type="button" class="password-toggle" data-target="password" aria-label="Show password"><span class="material-icons">visibility</span></button></div>
+                </div>
+                <label class="check-row"><input type="checkbox" id="rememberMe"><span>Keep me signed in on this device</span></label>
+                <button type="submit" class="submit-btn"><span>Sign in securely</span><span class="material-icons">arrow_forward</span></button>
+                <p class="demo-note"><strong>Demo:</strong> demo@mdoner.gov.in / demo123</p>
+            </form>
 
-        <p class="signup-link" id="toggleToSignup">
-            <span data-translate-key="noAccount">Don't have an account?</span> <a href="#" data-translate-key="signUpLink">Sign up</a>
-        </p>
-        <p class="signup-link" id="toggleToLogin" style="display:none;">
-            <!-- Add translate keys for the "Already have an account?" text here -->
-        </p>
-    </div>
+            <form id="signupForm" hidden novalidate>
+                <div class="form-grid">
+                    <div class="form-group"><label for="signupName">Full name</label><input id="signupName" class="form-input" autocomplete="name" required></div>
+                    <div class="form-group"><label for="signupDesignation">Designation</label><input id="signupDesignation" class="form-input" placeholder="e.g. Project Director" required></div>
+                </div>
+                <div class="form-group"><label for="signupOrganisation">Organisation / department</label><input id="signupOrganisation" class="form-input" autocomplete="organization" required></div>
+                <div class="form-grid">
+                    <div class="form-group"><label for="signupRole">Requested role</label><select id="signupRole" class="form-input" required><option value="">Select role</option><option value="project_officer">Project officer</option><option value="reviewer">DPR reviewer</option><option value="state_nodal">State nodal officer</option></select></div>
+                    <div class="form-group"><label for="signupPhone">Mobile number</label><input type="tel" id="signupPhone" class="form-input" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit number" required></div>
+                </div>
+                <div class="form-group"><label for="signupEmail">Official email</label><input type="email" id="signupEmail" class="form-input" autocomplete="email" required></div>
+                <div class="form-grid">
+                    <div class="form-group"><label for="signupPassword">Password</label><input type="password" id="signupPassword" class="form-input" minlength="8" autocomplete="new-password" required><small class="field-help">8+ characters with upper, lower and number</small></div>
+                    <div class="form-group"><label for="signupConfirm">Confirm password</label><input type="password" id="signupConfirm" class="form-input" autocomplete="new-password" required></div>
+                </div>
+                <label class="check-row"><input type="checkbox" id="signupTerms" required><span>I confirm that these are official details and accept the portal terms.</span></label>
+                <button type="submit" class="submit-btn"><span>Create account</span><span class="material-icons">person_add</span></button>
+            </form>
 
+            <div id="authMessage" class="message-box" role="alert"></div>
+            <div class="login-footer"><p id="toggleToSignup">New to the portal? <a href="#" id="showSignup">Request an account</a></p><p id="toggleToLogin" hidden>Already registered? <a href="#" id="showLogin">Sign in</a></p></div>
+            <p class="security-note"><span class="material-icons">lock</span> Authorised users only. Activity may be monitored and audited.</p>
+        </section>
+    </main>
     <script src="Autrhentication login.js"></script>
     <script src="language-switcher.js"></script>
 </body>

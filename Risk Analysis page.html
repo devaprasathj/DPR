@@ -56,44 +56,29 @@
         
         <div class="content-card">
             <p class="caption">Projects ranked by overall risk level (high risk projects requiring immediate attention are highlighted).</p>
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Project Name</th>
-                        <th>Overall Risk</th>
-                        <th>Financial Risk</th>
-                        <th>Timeline Risk</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="riskTableBody">
-                    <!-- Data populated by JS -->
-                </tbody>
-            </table>
+            <div class="data-table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Overall Risk</th>
+                            <th>Financial Risk</th>
+                            <th>Timeline Risk</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="riskTableBody">
+                        <!-- Data populated by JS -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
     <script src="Autrhentication login.js"></script>
     <script src="language-switcher.js"></script>
     <script>
-        // Temporary local definitions to ensure 'checkAuth' is available 
-        // if auth.js hasn't fully loaded the global functions yet.
-        // The real fix is ensuring checkAuth and logout are defined globally in js/auth.js.
-        // For this single-file fix, we assume the functions are NOT globally available 
-        // at the time this script tag executes.
-        if (typeof checkAuth === 'undefined') {
-            window.checkAuth = function() {
-                const token = localStorage.getItem('dpr_token');
-                if (!token) {
-                    window.location.href = 'login page.html';
-                    return false;
-                }
-                return token;
-            };
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
-            // Now checkAuth is guaranteed to exist.
             if (!checkAuth()) return;
 
             const risks = [

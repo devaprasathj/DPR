@@ -1,215 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload DPR Documents</title>
-    <link rel="stylesheet" href="style and login page.css">
-    <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="content page.css">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create DPR | MDoNER DPR Portal</title>
+    <link rel="stylesheet" href="style and login page.css"><link rel="stylesheet" href="dashboard.css"><link rel="stylesheet" href="dpr-form.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style>
-        /* Specific styles for the drag-and-drop zone, the standalone styles have been removed */
-        .drop-zone {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 20px;
-            margin-top: 20px;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-            background-color: #f7f9fa;
-            transition: border-color 0.3s, background-color 0.3s;
-        }
-
-        .drop-zone.dragover {
-            border-color: #00796b;
-            background-color: #e0f2f1;
-        }
-
-        .drop-icon {
-            font-size: 48px;
-            color: #00796b;
-            margin-bottom: 15px;
-        }
-
-        .drop-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .drop-info {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 25px;
-        }
-
-        /* Styling the button to look like the mock-up */
-        .drop-zone button {
-            background-color: #004d40;
-            color: white;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        
-        .drop-zone button:hover {
-            background-color: #00796b;
-        }
-    </style>
 </head>
 <body>
-    <header class="main-header">
-        <div class="header-title">
-            <h1 data-translate-key="systemTitle">MDONER DPR Quality Assessment System</h1>
-            <p data-translate-key="systemSubtitle">AI-Powered Project Evaluation & Risk Analysis</p>
-        </div>
-        <div class="header-controls">
-            <div class="language-selector">
-                <span class="material-icons">language</span>
-                <select id="languageSelect">
-                    <option value="en">English</option>
-                    <option value="hi">Hindi</option>
-                    <option value="as">Assamese</option>
-                    <option value="ta">Tamil</option>
-                    <option value="ml">Malayalam</option>
-                    <option value="te">Telugu</option>
-                    <option value="kn">Kannada</option>
-                </select>
-            </div>
-            <button id="modeChangeBtn" class="mode-toggle">
-                <span class="material-icons">brightness_4</span>
-            </button>
-            <div class="system-status" data-translate-key="systemOnline">
-                <span class="status-indicator online"></span> System Online
-            </div>
-            <button id="logoutButton" class="logout-button" data-translate-key="logout">
-                Logout <span class="material-icons">logout</span>
-            </button>
-        </div>
-    </header>
+    <header class="main-header"><div class="header-title"><h1>MDoNER DPR Portal</h1><p>Project appraisal & monitoring</p></div><div class="header-controls"><div class="user-chip"><span class="user-avatar" id="userInitial">U</span><span><strong id="currentUserName">User</strong><small id="currentUserRole">Project officer</small></span></div><button id="logoutButton" class="logout-button">Sign out <span class="material-icons">logout</span></button></div></header>
+    <nav class="nav-tabs"><ul><li><a href="main dashboard.html">Dashboard</a></li><li><a href="upload DPR page.html" class="active">Create DPR</a></li><li><a href="Assessment page.html">Assessments</a></li><li><a href="Risk Analysis page.html">Risk analysis</a></li><li><a href="compilance page.html">Compliance</a></li><li><a href="Analytics page.html">Analytics</a></li></ul></nav>
 
-    <nav class="nav-tabs">
-        <ul>
-            <li><a href="main dashboard.html" data-translate-key="dashboard">Dashboard</a></li>
-            <li><a href="upload DPR page.html" class="active" data-translate-key="uploadDPR">Upload DPR</a></li>
-            <li><a href="Assessment page.html" data-translate-key="assessment">Assessment</a></li>
-            <li><a href="Risk Analysis page.html" data-translate-key="riskAnalysis">Risk Analysis</a></li>
-            <li><a href="compilance page.html" data-translate-key="compliance">Compliance</a></li>
-            <li><a href="Analytics page.html" data-translate-key="analytics">Analytics</a></li>
-        </ul>
-    </nav>
+    <main class="dpr-shell">
+        <div class="page-heading"><div><a href="main dashboard.html" class="back-link"><span class="material-icons">arrow_back</span> Dashboard</a><h2>Create Detailed Project Report</h2><p>Complete all required sections before submitting the DPR for appraisal.</p></div><div class="draft-status"><span class="material-icons">cloud_done</span><span><strong id="saveStatus">Draft saved</strong><small id="saveTime">Locally on this device</small></span></div></div>
+        <div class="completion-card"><div><span>Overall completion</span><strong id="completionText">0%</strong></div><div class="completion-track"><span id="completionBar"></span></div></div>
 
-    <main class="content-page">
-        <div class="content-card">
-            <h1 class="card-title">
-                <span class="material-icons" style="vertical-align: middle;">upload_file</span>
-                Upload DPR Documents
-            </h1>
-            <p class="caption">Upload PDF or text files for quality assessment and risk analysis</p>
-            
-            <div id="dropZone" class="drop-zone">
-                <span class="material-icons drop-icon">cloud_upload</span>
-                <p class="drop-text">Drop your DPR files here or click to browse</p>
-                <p class="drop-info">Supports PDF and text formats • Max file size: 50MB</p>
-                <input type="file" id="fileInput" multiple accept=".pdf,.txt" hidden>
-                <button id="selectFilesButton">Select Files</button>
-            </div>
-            
-            <div id="fileList" style="margin-top: 20px; font-size: 14px; color: #333;">
-                <!-- File upload status will appear here -->
-            </div>
+        <div class="form-layout">
+            <aside class="step-sidebar"><ol id="stepList">
+                <li class="active" data-step="0"><span>1</span><div><strong>Project overview</strong><small>Identity & ownership</small></div></li>
+                <li data-step="1"><span>2</span><div><strong>Location & scope</strong><small>Coverage & outcomes</small></div></li>
+                <li data-step="2"><span>3</span><div><strong>Finance & schedule</strong><small>Cost & milestones</small></div></li>
+                <li data-step="3"><span>4</span><div><strong>Readiness & risks</strong><small>Clearances & mitigation</small></div></li>
+                <li data-step="4"><span>5</span><div><strong>Documents & review</strong><small>Evidence & declaration</small></div></li>
+            </ol></aside>
+
+            <form id="dprForm" class="dpr-form" novalidate>
+                <section class="form-step active" data-step="0"><div class="section-heading"><span class="section-icon material-icons">description</span><div><h3>Project overview</h3><p>Core administrative details used to identify and route the DPR.</p></div></div>
+                    <div class="field-grid"><div class="field span-2"><label for="projectTitle">Project title <b>*</b></label><input id="projectTitle" name="projectTitle" required maxlength="150" placeholder="Enter the official project title"><small>Use the title recorded in the administrative proposal.</small></div>
+                    <div class="field"><label for="projectType">Project type <b>*</b></label><select id="projectType" name="projectType" required><option value="">Select type</option><option>New project</option><option>Expansion / augmentation</option><option>Modernisation</option><option>Reconstruction</option></select></div>
+                    <div class="field"><label for="sector">Sector <b>*</b></label><select id="sector" name="sector" required><option value="">Select sector</option><option>Roads & bridges</option><option>Water supply & sanitation</option><option>Health</option><option>Education</option><option>Power & renewable energy</option><option>Tourism</option><option>Agriculture & allied</option><option>Digital infrastructure</option><option>Other</option></select></div>
+                    <div class="field"><label for="scheme">Scheme / programme <b>*</b></label><input id="scheme" name="scheme" required placeholder="e.g. NESIDS (Roads)"></div><div class="field"><label for="state">State / UT <b>*</b></label><select id="state" name="state" required><option value="">Select state</option><option>Arunachal Pradesh</option><option>Assam</option><option>Manipur</option><option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option><option>Sikkim</option><option>Tripura</option></select></div>
+                    <div class="field"><label for="department">Sponsoring department <b>*</b></label><input id="department" name="department" required></div><div class="field"><label for="agency">Implementing agency <b>*</b></label><input id="agency" name="agency" required></div>
+                    <div class="field"><label for="nodalOfficer">Nodal officer <b>*</b></label><input id="nodalOfficer" name="nodalOfficer" required></div><div class="field"><label for="nodalContact">Official contact <b>*</b></label><input type="email" id="nodalContact" name="nodalContact" required placeholder="officer@agency.gov.in"></div></div>
+                </section>
+
+                <section class="form-step" data-step="1"><div class="section-heading"><span class="section-icon material-icons">place</span><div><h3>Location, need and scope</h3><p>Define where the project operates, why it is needed and what it will deliver.</p></div></div>
+                    <div class="field-grid"><div class="field"><label for="districts">District(s) <b>*</b></label><input id="districts" name="districts" required placeholder="Comma-separated districts"></div><div class="field"><label for="projectArea">Block / town / project area <b>*</b></label><input id="projectArea" name="projectArea" required></div>
+                    <div class="field"><label for="latitude">Latitude</label><input type="number" step="any" min="-90" max="90" id="latitude" name="latitude" placeholder="26.1445"></div><div class="field"><label for="longitude">Longitude</label><input type="number" step="any" min="-180" max="180" id="longitude" name="longitude" placeholder="91.7362"></div>
+                    <div class="field span-2"><label for="problemStatement">Need / problem statement <b>*</b></label><textarea id="problemStatement" name="problemStatement" rows="4" minlength="50" required placeholder="Describe the current gap, baseline condition and evidence of need."></textarea></div>
+                    <div class="field span-2"><label for="objectives">Project objectives <b>*</b></label><textarea id="objectives" name="objectives" rows="3" required placeholder="List measurable objectives and expected change."></textarea></div>
+                    <div class="field span-2"><label for="scope">Major components and physical scope <b>*</b></label><textarea id="scope" name="scope" rows="4" required placeholder="Describe quantities, capacities, specifications and work packages."></textarea></div>
+                    <div class="field"><label for="beneficiaries">Estimated beneficiaries <b>*</b></label><input type="number" min="1" id="beneficiaries" name="beneficiaries" required></div><div class="field"><label for="beneficiaryGroups">Primary beneficiary groups <b>*</b></label><input id="beneficiaryGroups" name="beneficiaryGroups" required placeholder="e.g. rural households, students"></div>
+                    <div class="field span-2"><label for="outcomes">Measurable outputs and outcomes <b>*</b></label><textarea id="outcomes" name="outcomes" rows="4" required placeholder="Include indicators, baseline and target values where available."></textarea></div></div>
+                </section>
+
+                <section class="form-step" data-step="2"><div class="section-heading"><span class="section-icon material-icons">payments</span><div><h3>Financial plan and schedule</h3><p>Provide the approved cost basis, funding pattern and implementation timeline.</p></div></div>
+                    <div class="field-grid"><div class="field"><label for="totalCost">Total project cost (₹ crore) <b>*</b></label><input type="number" step="0.01" min="0.01" id="totalCost" name="totalCost" required></div><div class="field"><label for="costBaseYear">Cost estimate base year <b>*</b></label><input type="number" min="2000" max="2100" id="costBaseYear" name="costBaseYear" required placeholder="2026"></div>
+                    <div class="field"><label for="centralShare">Central share (₹ crore) <b>*</b></label><input type="number" step="0.01" min="0" id="centralShare" name="centralShare" required></div><div class="field"><label for="stateShare">State / other share (₹ crore) <b>*</b></label><input type="number" step="0.01" min="0" id="stateShare" name="stateShare" required></div>
+                    <div class="field"><label for="startDate">Planned start date <b>*</b></label><input type="date" id="startDate" name="startDate" required></div><div class="field"><label for="endDate">Planned completion date <b>*</b></label><input type="date" id="endDate" name="endDate" required></div>
+                    <div class="field"><label for="duration">Duration (months) <b>*</b></label><input type="number" min="1" max="240" id="duration" name="duration" required></div><div class="field"><label for="procurement">Procurement strategy <b>*</b></label><select id="procurement" name="procurement" required><option value="">Select strategy</option><option>EPC</option><option>Item-rate contract</option><option>Design-build</option><option>PPP</option><option>Multiple packages</option></select></div>
+                    <div class="field span-2"><label for="costBreakdown">Major cost components <b>*</b></label><textarea id="costBreakdown" name="costBreakdown" rows="4" required placeholder="Civil works, equipment, consultancy, contingencies, taxes, land and other costs."></textarea></div>
+                    <div class="field span-2"><label for="milestones">Key implementation milestones <b>*</b></label><textarea id="milestones" name="milestones" rows="4" required placeholder="List milestone, target month and responsible agency."></textarea></div>
+                    <div class="field span-2"><label for="omPlan">Operations and maintenance plan <b>*</b></label><textarea id="omPlan" name="omPlan" rows="3" required placeholder="State the operating entity, annual O&M requirement and funding source."></textarea></div></div>
+                </section>
+
+                <section class="form-step" data-step="3"><div class="section-heading"><span class="section-icon material-icons">fact_check</span><div><h3>Readiness, compliance and risk</h3><p>Record implementation readiness and unresolved dependencies.</p></div></div>
+                    <div class="field-grid"><div class="field"><label for="landStatus">Land availability <b>*</b></label><select id="landStatus" name="landStatus" required><option value="">Select status</option><option>Fully available</option><option>Partially available</option><option>Acquisition in progress</option><option>Not required</option></select></div><div class="field"><label for="environmentStatus">Environmental clearance <b>*</b></label><select id="environmentStatus" name="environmentStatus" required><option value="">Select status</option><option>Obtained</option><option>Applied / in process</option><option>Not applicable</option><option>Not initiated</option></select></div>
+                    <div class="field"><label for="forestStatus">Forest clearance <b>*</b></label><select id="forestStatus" name="forestStatus" required><option value="">Select status</option><option>Obtained</option><option>Applied / in process</option><option>Not applicable</option><option>Not initiated</option></select></div><div class="field"><label for="utilityStatus">Utility shifting <b>*</b></label><select id="utilityStatus" name="utilityStatus" required><option value="">Select status</option><option>Completed</option><option>Plan approved</option><option>In assessment</option><option>Not applicable</option></select></div>
+                    <div class="field span-2"><label for="otherClearances">Other statutory clearances / dependencies</label><textarea id="otherClearances" name="otherClearances" rows="3" placeholder="Wildlife, heritage, railway, defence, local body or other approvals."></textarea></div>
+                    <div class="field"><label for="riskLevel">Overall delivery risk <b>*</b></label><select id="riskLevel" name="riskLevel" required><option value="">Select risk</option><option>Low</option><option>Moderate</option><option>High</option><option>Critical</option></select></div><div class="field"><label for="climateResilience">Climate resilience considered? <b>*</b></label><select id="climateResilience" name="climateResilience" required><option value="">Select</option><option>Yes</option><option>No</option><option>Not applicable</option></select></div>
+                    <div class="field span-2"><label for="risks">Key risks and mitigation measures <b>*</b></label><textarea id="risks" name="risks" rows="5" required placeholder="Cover technical, financial, schedule, social, environmental and institutional risks."></textarea></div>
+                    <div class="field span-2"><label for="monitoringPlan">Monitoring and reporting plan <b>*</b></label><textarea id="monitoringPlan" name="monitoringPlan" rows="4" required placeholder="Define indicators, reporting frequency, responsible officer and verification method."></textarea></div></div>
+                </section>
+
+                <section class="form-step" data-step="4"><div class="section-heading"><span class="section-icon material-icons">attach_file</span><div><h3>Supporting documents and declaration</h3><p>Attach the complete evidence package and confirm submission ownership.</p></div></div>
+                    <div class="upload-zone" id="dropZone" tabindex="0"><span class="material-icons">cloud_upload</span><h4>Drop documents here or browse</h4><p>PDF, XLSX, DOCX, JPG or PNG · Maximum 50 MB per file</p><button type="button" id="selectFilesButton" class="secondary-btn">Choose files</button><input type="file" id="fileInput" multiple accept=".pdf,.xlsx,.xls,.docx,.doc,.jpg,.jpeg,.png" hidden></div>
+                    <div id="fileList" class="file-list"></div>
+                    <div class="document-checklist"><h4>Recommended DPR evidence</h4><div class="check-grid"><label><input type="checkbox" name="docChecklist" value="dpr"> Signed DPR report</label><label><input type="checkbox" name="docChecklist" value="estimate"> Detailed cost estimate / BoQ</label><label><input type="checkbox" name="docChecklist" value="drawings"> Designs and drawings</label><label><input type="checkbox" name="docChecklist" value="clearance"> Clearance certificates</label><label><input type="checkbox" name="docChecklist" value="map"> Site map / photographs</label><label><input type="checkbox" name="docChecklist" value="approval"> Administrative approval</label></div></div>
+                    <label class="declaration"><input type="checkbox" id="declaration" required><span>I certify that the information and documents are complete and accurate, and I am authorised to submit this DPR for appraisal. <b>*</b></span></label>
+                    <div id="formMessage" class="form-message" role="alert"></div>
+                </section>
+
+                <footer class="form-actions"><button type="button" id="saveDraft" class="secondary-btn"><span class="material-icons">save</span> Save draft</button><div><button type="button" id="previousStep" class="text-btn" hidden>Previous</button><button type="button" id="nextStep" class="primary-btn">Save & continue <span class="material-icons">arrow_forward</span></button><button type="submit" id="submitDpr" class="primary-btn" hidden>Submit for appraisal <span class="material-icons">send</span></button></div></footer>
+            </form>
         </div>
     </main>
-
-    <script src="Autrhentication login.js"></script>
-    <script src="language-switcher.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (!checkAuth()) return;
-            
-            const dropZone = document.getElementById('dropZone');
-            const fileInput = document.getElementById('fileInput');
-            const selectFilesButton = document.getElementById('selectFilesButton');
-            const fileList = document.getElementById('fileList');
-
-            // Opens the file dialog when the button is clicked
-            selectFilesButton.addEventListener('click', () => {
-                fileInput.click();
-            });
-
-            // Handles file selection via button
-            fileInput.addEventListener('change', (event) => {
-                handleFiles(event.target.files);
-            });
-
-            // Drag-and-drop event handlers
-            dropZone.addEventListener('dragover', (event) => {
-                event.preventDefault(); // Necessary to allow drop
-                dropZone.classList.add('dragover');
-            });
-
-            dropZone.addEventListener('dragleave', () => {
-                dropZone.classList.remove('dragover');
-            });
-
-            dropZone.addEventListener('drop', (event) => {
-                event.preventDefault();
-                dropZone.classList.remove('dragover');
-                if (event.dataTransfer.files.length) {
-                    handleFiles(event.dataTransfer.files);
-                }
-            });
-
-            function handleFiles(files) {
-                fileList.innerHTML = ''; // Clear previous list
-                
-                if (files.length === 0) return;
-
-                const fileArray = Array.from(files);
-                
-                // Display files for simulation purposes
-                fileList.innerHTML += '<p style="font-weight: bold; margin-bottom: 10px;">Selected files:</p>';
-                
-                fileArray.forEach(file => {
-                    // Simple size and type validation
-                    const maxSize = 50 * 1024 * 1024; // 50MB
-                    const validTypes = ['application/pdf', 'text/plain'];
-                    
-                    let status = 'Pending Upload';
-                    let statusColor = '#333';
-                    
-                    if (file.size > maxSize) {
-                        status = 'Error: Too large (Max 50MB)';
-                        statusColor = '#d32f2f';
-                    } else if (!validTypes.includes(file.type)) {
-                        status = 'Error: Invalid file type';
-                        statusColor = '#d32f2f';
-                    }
-
-                    fileList.innerHTML += `
-                        <div style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #eee;">
-                            <span>${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)</span>
-                            <span style="color: ${statusColor};">${status}</span>
-                        </div>
-                    `;
-
-                    if (status === 'Pending Upload') {
-                        // In a real app, you would start the AJAX upload here
-                        console.log('Simulating upload for:', file.name);
-                    }
-                });
-            }
-        });
-    </script>
-</body>
-</html>
-
+    <script src="Autrhentication login.js"></script><script src="dpr-form.js"></script><script src="language-switcher.js"></script>
+</body></html>

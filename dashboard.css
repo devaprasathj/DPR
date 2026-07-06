@@ -196,6 +196,278 @@ main {
     .content-grid {
         grid-template-columns: 1fr; /* Stack on smaller screens */
     }
+    
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    header {
+        padding: 15px 20px;
+    }
+    
+    .nav-tabs {
+        padding: 10px 20px 0;
+        overflow-x: auto;
+    }
+    
+    .nav-tabs ul {
+        gap: 20px;
+        min-width: max-content;
+    }
+    
+    main {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    
+    .header-title h1 {
+        font-size: 18px;
+    }
+    
+    .header-title p {
+        font-size: 12px;
+    }
+    
+    .header-controls {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .language-selector {
+        padding: 5px 10px;
+    }
+    
+    .language-selector select {
+        font-size: 14px;
+    }
+    
+    .mode-toggle {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .system-status {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+    
+    .logout-button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    
+    .nav-tabs ul {
+        gap: 15px;
+    }
+    
+    .nav-tabs li a {
+        font-size: 14px;
+        padding: 8px 0;
+    }
+    
+    .stat-grid {
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+        height: auto;
+        min-height: 100px;
+    }
+    
+    .stat-card .label {
+        font-size: 13px;
+    }
+    
+    .stat-card .value {
+        font-size: 28px;
+        margin-top: 8px;
+    }
+    
+    .content-grid {
+        gap: 20px;
+    }
+    
+    .section-card {
+        padding: 20px;
+    }
+    
+    .section-card h3 {
+        font-size: 16px;
+    }
+    
+    main {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 12px;
+    }
+    
+    .header-title h1 {
+        font-size: 16px;
+    }
+    
+    .header-title p {
+        font-size: 11px;
+        display: none;
+    }
+    
+    .header-controls {
+        gap: 8px;
+    }
+    
+    .language-selector {
+        padding: 4px 8px;
+    }
+    
+    .language-selector .material-icons {
+        font-size: 18px;
+        margin-right: 4px;
+    }
+    
+    .language-selector select {
+        font-size: 13px;
+    }
+    
+    .mode-toggle {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .mode-toggle .material-icons {
+        font-size: 20px;
+    }
+    
+    .system-status {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+    
+    .logout-button {
+        padding: 5px 10px;
+        font-size: 13px;
+    }
+    
+    .logout-button .material-icons {
+        font-size: 18px;
+    }
+    
+    .nav-tabs {
+        padding: 8px 12px 0;
+    }
+    
+    .nav-tabs ul {
+        gap: 12px;
+    }
+    
+    .nav-tabs li a {
+        font-size: 13px;
+        padding: 6px 0;
+    }
+    
+    .stat-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .stat-card {
+        padding: 16px;
+        min-height: 90px;
+    }
+    
+    .stat-card .label {
+        font-size: 12px;
+    }
+    
+    .stat-card .label .material-icons {
+        font-size: 18px;
+    }
+    
+    .stat-card .value {
+        font-size: 24px;
+        margin-top: 6px;
+    }
+    
+    main {
+        padding: 12px;
+    }
+    
+    .content-grid {
+        gap: 15px;
+    }
+    
+    .section-card {
+        padding: 16px;
+    }
+    
+    .section-card h3 {
+        font-size: 15px;
+        padding-bottom: 8px;
+    }
+    
+    .section-card p.caption {
+        font-size: 11px;
+        margin-bottom: 15px;
+    }
+    
+    .assessment-item {
+        padding: 12px 0;
+    }
+    
+    .assessment-item h4 {
+        font-size: 14px;
+    }
+    
+    .assessment-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .assessment-details span {
+        font-size: 12px;
+    }
+    
+    .status-badge {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+    
+    .alert-item {
+        padding: 12px 0;
+    }
+    
+    .alert-item .dot {
+        margin-top: 3px;
+        margin-right: 10px;
+    }
+    
+    .alert-item h4 {
+        font-size: 14px;
+    }
+    
+    .alert-item p {
+        font-size: 12px;
+    }
+    
+    .view-link {
+        font-size: 11px !important;
+    }
 }
 
 .section-card {

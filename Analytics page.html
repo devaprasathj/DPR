@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics - DPR Quality Assessment System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="MDoNER DPR portfolio analytics and government performance monitoring dashboard">
+    <title>Portfolio Analytics | MDoNER DPR Portal</title>
     <link rel="stylesheet" href="style and login page.css">
     <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="content page.css">
+    <link rel="stylesheet" href="analytics.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
     <header class="main-header">
         <div class="header-title">
-            <h1 data-translate-key="systemTitle">MDONER DPR Quality Assessment System</h1>
-            <p data-translate-key="systemSubtitle">AI-Powered Project Evaluation & Risk Analysis</p>
+            <h1>MDoNER DPR Portal</h1>
+            <p>Project appraisal & monitoring</p>
         </div>
         <div class="header-controls">
             <div class="language-selector">
@@ -22,57 +23,152 @@
                     <option value="en">English</option>
                     <option value="hi">Hindi</option>
                     <option value="as">Assamese</option>
-                    <option value="ta">Tamil</option>
-                    <option value="ml">Malayalam</option>
-                    <option value="te">Telugu</option>
-                    <option value="kn">Kannada</option>
                 </select>
             </div>
-            <button id="modeChangeBtn" class="mode-toggle">
-                <span class="material-icons">brightness_4</span>
-            </button>
-            <div class="system-status">
-                <span class="status-indicator online"></span> System Online
-            </div>
-            <button id="logoutButton" class="logout-button">
-                Logout <span class="material-icons">logout</span>
-            </button>
+            <button id="modeChangeBtn" class="mode-toggle"><span class="material-icons">dark_mode</span></button>
+            <div class="system-status"><span class="status-indicator online"></span> System online</div>
+            <button id="logoutButton" class="logout-button">Sign out <span class="material-icons">logout</span></button>
         </div>
     </header>
 
     <nav class="nav-tabs">
         <ul>
-            <li><a href="main dashboard.html" data-translate-key="dashboard">Dashboard</a></li>
-            <li><a href="upload DPR page.html">Upload DPR</a></li>
-            <li><a href="Assessment page.html">Assessment</a></li>
-            <li><a href="Risk Analysis page.html">Risk Analysis</a></li>
+            <li><a href="main dashboard.html">Dashboard</a></li>
+            <li><a href="upload DPR page.html">Create DPR</a></li>
+            <li><a href="Assessment page.html">Assessments</a></li>
+            <li><a href="Risk Analysis page.html">Risk analysis</a></li>
             <li><a href="compilance page.html">Compliance</a></li>
             <li><a href="Analytics page.html" class="active">Analytics</a></li>
         </ul>
     </nav>
 
-    <main class="content-page">
-        <h1>System Performance & Trend Analysis</h1>
-        
-        <div class="content-card">
-            <h3>Quality Score Trends by Quarter</h3>
-            <div class="chart-container">
-                [Placeholder for Chart Library: Quarterly Quality Score Trendline]
+    <main class="analytics-shell">
+        <section class="analytics-heading">
+            <div>
+                <span class="page-kicker">Portfolio intelligence</span>
+                <h2>Analytics brief</h2>
+                <p>Short, interactive views for investment, risk, and readiness. Click any bar or segment to inspect it.</p>
             </div>
-            
-            <h3>Risk Distribution by State</h3>
-            <div class="chart-container">
-                [Placeholder for Chart Library: High Risk Projects (Bar Chart)]
+            <div class="heading-actions">
+                <button id="exportCsv" class="analytics-button secondary"><span class="material-icons">download</span> Export CSV</button>
+                <button id="printReport" class="analytics-button primary"><span class="material-icons">print</span> Print brief</button>
             </div>
+        </section>
 
-            <h3>Report Submission Velocity</h3>
-            <div class="chart-container">
-                [Placeholder for Chart Library: Reports Per Month (Line Graph)]
+        <section class="filter-panel" aria-label="Analytics filters">
+            <div class="filter-heading">
+                <span class="material-icons">tune</span>
+                <div>
+                    <strong>Portfolio filters</strong>
+                    <small id="dataContext">Reference portfolio with submitted DPRs</small>
+                </div>
             </div>
-        </div>
+            <label>State
+                <select id="stateFilter"><option value="all">All states</option></select>
+            </label>
+            <label>Sector
+                <select id="sectorFilter"><option value="all">All sectors</option></select>
+            </label>
+            <label>Risk
+                <select id="riskFilter">
+                    <option value="all">All risk levels</option>
+                    <option>Low</option>
+                    <option>Moderate</option>
+                    <option>High</option>
+                    <option>Critical</option>
+                </select>
+            </label>
+            <label>Period
+                <select id="periodFilter">
+                    <option value="all">All time</option>
+                    <option value="12">Last 12 months</option>
+                    <option value="6">Last 6 months</option>
+                    <option value="3">Last 3 months</option>
+                </select>
+            </label>
+            <button id="resetFilters" class="reset-filter">Reset</button>
+        </section>
+
+        <section class="report-meta">
+            <span><span class="material-icons">database</span><strong id="recordCount">0</strong> records analysed</span>
+            <span><span class="material-icons">schedule</span>Updated <strong id="updatedAt">-</strong></span>
+            <span class="data-badge" id="dataBadge">REFERENCE + LIVE DATA</span>
+        </section>
+
+        <section class="kpi-grid" aria-label="Key performance indicators">
+            <article class="kpi-card">
+                <span class="kpi-icon teal material-icons">folder_open</span>
+                <div><small>Total DPRs</small><strong id="kpiProjects">0</strong><span id="kpiStates">Across 0 states</span></div>
+            </article>
+            <article class="kpi-card">
+                <span class="kpi-icon blue material-icons">account_balance_wallet</span>
+                <div><small>Portfolio investment</small><strong id="kpiInvestment">INR 0 Cr</strong><span id="kpiAverageCost">INR 0 Cr average cost</span></div>
+            </article>
+            <article class="kpi-card">
+                <span class="kpi-icon green material-icons">fact_check</span>
+                <div><small>Implementation ready</small><strong id="kpiReadiness">0%</strong><span>Clearances and land status</span></div>
+            </article>
+            <article class="kpi-card">
+                <span class="kpi-icon red material-icons">warning_amber</span>
+                <div><small>High-risk exposure</small><strong id="kpiRisk">0%</strong><span id="kpiRiskCount">0 projects need attention</span></div>
+            </article>
+        </section>
+
+        <section id="selectionPanel" class="selection-panel" aria-live="polite">
+            Click a bar, legend item, or readiness row to view the value here.
+        </section>
+
+        <section class="analytics-grid">
+            <article class="analytics-card span-2">
+                <header>
+                    <div>
+                        <h3>Investment by state</h3>
+                        <p>Click a bar to inspect the state share</p>
+                    </div>
+                    <span class="metric-tag">FINANCIAL</span>
+                </header>
+                <div id="stateInvestmentChart" class="bar-chart"></div>
+            </article>
+
+            <article class="analytics-card">
+                <header>
+                    <div>
+                        <h3>Risk mix</h3>
+                        <p>Click a legend item for the selected risk band</p>
+                    </div>
+                    <span class="metric-tag risk">RISK</span>
+                </header>
+                <div class="donut-layout">
+                    <div class="donut" id="riskDonut">
+                        <span><strong id="donutValue">0</strong><small>Projects</small></span>
+                    </div>
+                    <div id="riskLegend" class="chart-legend"></div>
+                </div>
+            </article>
+
+            <article class="analytics-card span-2">
+                <header>
+                    <div>
+                        <h3>Readiness checks</h3>
+                        <p>Click a row to inspect the clearance level</p>
+                    </div>
+                    <span class="metric-tag ready">READY</span>
+                </header>
+                <div class="readiness-layout">
+                    <div id="readinessChart" class="readiness-list"></div>
+                    <aside id="readinessStats" class="readiness-stats" aria-label="Readiness statistics"></aside>
+                </div>
+            </article>
+        </section>
+
+        <footer class="analytics-note">
+            <span class="material-icons">info</span>
+            <p><strong>Reporting note:</strong> Values are calculated from the filtered portfolio. Reference data supports the demo view; production reporting should use verified DPR records from the central system.</p>
+        </footer>
     </main>
 
     <script src="Autrhentication login.js"></script>
-    <script src="language-switcher.js"></script> <!-- This MUST be present -->
+    <script src="language-switcher.js"></script>
+    <script src="analytics.js"></script>
 </body>
 </html>

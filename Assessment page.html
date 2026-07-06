@@ -56,24 +56,27 @@
         
         <div class="content-card">
             <p class="caption">List of all projects with their AI-generated quality scores and manual review status.</p>
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Project Name</th>
-                        <th>AI Score</th>
-                        <th>Review Status</th>
-                        <th>Last Updated</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="assessmentTableBody">
-                    <!-- Data populated by JS -->
-                </tbody>
-            </table>
+            <div class="data-table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>AI Score</th>
+                            <th>Review Status</th>
+                            <th>Last Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assessmentTableBody">
+                        <!-- Data populated by JS -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
     <script src="Autrhentication login.js"></script>
+    <script src="language-switcher.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (!checkAuth()) return;
@@ -106,4 +109,3 @@
     </script>
 </body>
 </html>
-

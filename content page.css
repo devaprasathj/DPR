@@ -119,3 +119,132 @@
     color: var(--primary-color);
     margin-bottom: 20px;
 }
+
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+    .content-page {
+        padding: 15px 20px;
+    }
+    
+    .content-page h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    
+    .content-card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .content-card p.caption {
+        font-size: 13px;
+    }
+    
+    .data-table {
+        font-size: 14px;
+    }
+    
+    .data-table th, .data-table td {
+        padding: 12px 10px;
+    }
+    
+    .data-table th {
+        font-size: 11px;
+    }
+    
+    .upload-form input[type="text"],
+    .upload-form input[type="file"],
+    .upload-form select,
+    .upload-form textarea {
+        padding: 10px;
+        font-size: 15px;
+    }
+    
+    .upload-button {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+    
+    .chart-container {
+        height: 250px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-page {
+        padding: 12px 15px;
+    }
+    
+    .content-page h1 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    
+    .content-card {
+        padding: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .content-card p.caption {
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+    
+    /* Make tables scroll horizontally on small screens */
+    .data-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .data-table {
+        font-size: 13px;
+        min-width: 600px;
+    }
+    
+    .data-table th, .data-table td {
+        padding: 10px 8px;
+    }
+    
+    .data-table th {
+        font-size: 10px;
+    }
+    
+    .status-indicator {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+    
+    .action-link {
+        font-size: 13px;
+        margin-right: 10px;
+    }
+    
+    .upload-form .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .upload-form label {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    
+    .upload-form input[type="text"],
+    .upload-form input[type="file"],
+    .upload-form select,
+    .upload-form textarea {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+    
+    .upload-button {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .chart-container {
+        height: 200px;
+        font-size: 13px;
+    }
+}
